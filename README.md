@@ -22,6 +22,16 @@ CREATE DATABASE handnote;
 ALTER ROLE handnote Superuser;
 ```
 
+## Initial Redis
+
+```bash
+$ brew install redis
+$ brew services start redis
+$ redis-cli
+
+keys *
+```
+
 ## OpenAPI
 
 ```bash

@@ -117,9 +117,9 @@ info:
   version: 0.0.1
 paths:
   /sendEmail:
-    post:
+    get:
       description: 发送邮件
-      operationId: SendEmailRequest
+      operationId: sendEmailRequest
       parameters:
       - description: 邮箱地址
         in: query
@@ -134,7 +134,7 @@ paths:
         x-go-name: UserName
       responses:
         "200":
-          $ref: '#/responses/SendEmailResponse'
+          $ref: '#/responses/SignResponse'
       schemes:
       - http
       - https
@@ -206,19 +206,6 @@ responses:
       properties:
         data:
           $ref: '#/definitions/UserResponseBody'
-        message:
-          description: 响应信息
-          type: string
-          x-go-name: Message
-      type: object
-  SendEmailResponse:
-    description: SendEmailResponse 发送邮件响应参数
-    schema:
-      properties:
-        data:
-          description: 发送邮件是否成功
-          type: boolean
-          x-go-name: Data
         message:
           description: 响应信息
           type: string

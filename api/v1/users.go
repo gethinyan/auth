@@ -35,10 +35,10 @@ type GetUserResponse struct {
 //
 // 获取用户信息
 //
-//      Schemes: http, https
+//     Schemes: http, https
 //
-//      Responses:
-//        200: GetUserResponse
+//     Responses:
+//       200: GetUserResponse
 func GetUserInfo(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
 	fmt.Println(util.UserID)
@@ -82,10 +82,10 @@ type UpdateUserResponse struct {
 //
 // 更新用户信息
 //
-//      Schemes: http, https
+//     Schemes: http, https
 //
-//      Responses:
-//        200: UpdateUserResponse
+//     Responses:
+//       200: UpdateUserResponse
 func UpdateUser(c *gin.Context) {
 	var request models.UserRequestBody
 	if err := c.Bind(&request); err != nil {

@@ -11,8 +11,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// SendEmailRequest 发送邮件请求参数
-// swagger:parameters SendEmailRequest
+// SendEmailRequest 发送邮件请求结构
+// swagger:parameters sendEmailRequest
 type SendEmailRequest struct {
 	// 邮箱地址
 	// Required: true
@@ -21,27 +21,26 @@ type SendEmailRequest struct {
 	UserName string `json:"user_name"`
 }
 
-// SendEmailResponse 发送邮件响应参数
-// swagger:response SendEmailResponse
-type SendEmailResponse struct {
+// SignResponse 用户注册/登录响应参数
+// swagger:response SignResponse
+type SignResponse struct {
 	// in: body
 	Body struct {
 		// 响应信息
 		Message string `json:"message"`
-		// 发送邮件是否成功
-		Data bool `json:"data"`
+		// 用户信息
+		Data models.UserResponseBody `json:"data"`
 	}
 }
 
-// SendEmail 发送邮件
-// SendEmail swagger:route POST /sendEmail SendEmailRequest
+// SendEmail swagger:route GET /sendEmail sendEmailRequest
 //
 // 发送邮件
 //
-//      Schemes: http, https
+//     Schemes: http, https
 //
-//      Responses:
-//        200: SendEmailResponse
+//     Responses:
+//       200: SignResponse
 func SendEmail(c *gin.Context) {
 	var request SendEmailRequest
 	if err := c.Bind(&request); err != nil {
@@ -65,26 +64,14 @@ type SignUpRequest struct {
 	Body models.UserRequestBody
 }
 
-// SignResponse 用户注册/登录响应参数
-// swagger:response SignResponse
-type SignResponse struct {
-	// in: body
-	Body struct {
-		// 响应信息
-		Message string `json:"message"`
-		// 用户信息
-		Data models.UserResponseBody `json:"data"`
-	}
-}
-
 // SignUp swagger:route POST /signUp SignUpRequest
 //
 // 用户注册
 //
-//      Schemes: http, https
+//     Schemes: http, https
 //
-//      Responses:
-//        200: SignResponse
+//     Responses:
+//       200: SignResponse
 func SignUp(c *gin.Context) {
 	var request models.UserRequestBody
 	if err := c.Bind(&request); err != nil {
@@ -156,10 +143,10 @@ type SignInRequestBody struct {
 //
 // 用户登录
 //
-//      Schemes: http, https
+//     Schemes: http, https
 //
-//      Responses:
-//        200: SignResponse
+//     Responses:
+//       200: SignResponse
 func SignIn(c *gin.Context) {
 	var request SignInRequestBody
 	if err := c.Bind(&request); err != nil {
