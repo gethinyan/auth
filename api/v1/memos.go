@@ -9,12 +9,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// UpdateMemoForm 更新备忘录/便笺表单
-type UpdateMemoForm struct {
-	Name    string `json:"name"`
-	Content string `json:"content" binding:"required"`
-}
-
 // ListMemo 备忘录/便笺列表
 func ListMemo(c *gin.Context) {
 	memos := models.GetMemoList()
@@ -23,7 +17,7 @@ func ListMemo(c *gin.Context) {
 
 // UpdateMemo 创建备忘录/便笺
 func UpdateMemo(c *gin.Context) {
-	var request UpdateMemoForm
+	var request models.MemoRequestBody
 	if err := c.Bind(&request); err != nil {
 		fmt.Println(err)
 		c.JSON(http.StatusBadRequest, gin.H{"message": "验证失败"})
