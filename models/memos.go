@@ -11,9 +11,9 @@ const MemoModule = "memo"
 // 状态码
 const (
 	StatusNormal  = 0
-	StatusTrashed = 1
-	StatusArchive = 2
-	StatusDeleted = 3
+	StatusArchive = 1
+	StatusDeleted = 2
+	StatusTrashed = 3
 )
 
 // TableName 指定备忘录/便笺表表名
@@ -94,7 +94,35 @@ func UpdateBatchMemo(memos []MemoRequestBody) bool {
 	fmt.Println(memos)
 	// 循环 memos 数组一个一个更新
 	for _, memo := range memos {
-		dbConn.Table("memos").Where("id = ?", memo.ID).Updates(map[string]interface{}{"name": memo.Name, "content": memo.Content, "updated_at": time.Now()})
+		dbConn.Table("memos").Where("id = ? AND status IN (?)", memo.ID, []int8{StatusNormal}).Updates(map[string]interface{}{"name": memo.Name, "content": memo.Content, "updated_at": time.Now()})
+	}
+	return true
+}
+
+// RestoreBatchMemo 批量恢复备忘录/便笺
+func RestoreBatchMemo(memos []MemoRequestBody) bool {
+	idArr := []uint{}
+	for _, memo := range memos {
+		if memo.ID > 0 {
+			idArr = append(idArr, memo.ID)
+		}
+	}
+	if len(idArr) > 0 {
+		dbConn.Table("memos").Where("id IN (?) AND status IN (?)", idArr, []int8{StatusArchive, StatusDeleted}).Updates(map[string]interface{}{"status": StatusNormal, "updated_at": time.Now()})
+	}
+	return true
+}
+
+// ArchiveBatchMemo 批量归档备忘录/便笺
+func ArchiveBatchMemo(memos []MemoRequestBody) bool {
+	idArr := []uint{}
+	for _, memo := range memos {
+		if memo.ID > 0 {
+			idArr = append(idArr, memo.ID)
+		}
+	}
+	if len(idArr) > 0 {
+		dbConn.Table("memos").Where("id IN (?) AND status IN (?)", idArr, []int8{StatusNormal}).Updates(map[string]interface{}{"status": StatusArchive, "updated_at": time.Now()})
 	}
 	return true
 }

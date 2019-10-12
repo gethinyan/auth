@@ -21,6 +21,10 @@ type SyncMemoRequestForm struct {
 	Add []models.MemoRequestBody `json:"add"`
 	// 修改备忘录/便笺
 	Update []models.MemoRequestBody `json:"update"`
+	// 恢复备忘录/便笺
+	Restore []models.MemoRequestBody `json:"restore"`
+	// 归档备忘录/便笺
+	Archive []models.MemoRequestBody `json:"archive"`
 	// 删除备忘录/便笺
 	Delete []models.MemoRequestBody `json:"delete"`
 }
@@ -52,6 +56,14 @@ func SyncMemo(c *gin.Context) {
 	// 更新备忘录/便笺
 	if len(request.Update) > 0 {
 		models.UpdateBatchMemo(request.Update)
+	}
+	// 恢复备忘录/便笺
+	if len(request.Restore) > 0 {
+		models.RestoreBatchMemo(request.Restore)
+	}
+	// 归档备忘录/便笺
+	if len(request.Archive) > 0 {
+		models.ArchiveBatchMemo(request.Archive)
 	}
 	// 删除备忘录/便笺
 	if len(request.Delete) > 0 {
