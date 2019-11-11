@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"time"
 
+	"e.coding.net/handnote/handnote/pkg/redis"
 	"e.coding.net/handnote/handnote/pkg/util"
 	"github.com/gin-gonic/gin"
 )
@@ -23,6 +24,15 @@ func JWT() gin.HandlerFunc {
 			c.Abort()
 			return
 		}
+		// 判断 token 是否在黑名单里面
+		tokenExists := redis.RedisClient.HExists("tokenblacklist", token).Val()
+		if tokenExists == true {
+			c.JSON(http.StatusUnauthorized, gin.H{
+				"message": "StatusUnauthorized",
+			})
+			c.Abort()
+			return
+		}
 		user, err := util.ParseToken(token)
 		fmt.Println(user)
 		if err != nil {
@@ -34,14 +44,16 @@ func JWT() gin.HandlerFunc {
 		}
 		// 判断 token 是否有效
 		if time.Now().Unix() > user.ValidBefore {
-			token, err := util.GenerateToken(user.ID, user.Email)
-			fmt.Println(token, err)
+			newToken, err := util.GenerateToken(user.ID, user.Email)
+			fmt.Println(newToken, err)
 			if err != nil {
 				c.JSON(http.StatusUnauthorized, gin.H{
 					"message": "StatusUnauthorized",
 				})
 			}
-			c.Writer.Header().Set("Authorization", "Bearer "+token)
+			c.Writer.Header().Set("Authorization", "Bearer "+newToken)
+			// 把老 token 加入黑名单
+			redis.RedisClient.HSet("tokenblacklist", token, true)
 		}
 		c.Next()
 	}
