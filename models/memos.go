@@ -25,12 +25,19 @@ func (Memo) TableName() string {
 
 // Memo 定义备忘录/便笺表对应的结构
 type Memo struct {
-	ID        uint      `json:"id" gorm:"primary_key;not null;auto_increment"`
-	UID       uint      `json:"uid" gorm:"not null;default:0"`
-	Name      string    `json:"name" gorm:"size:200;not null;default:''"`
-	Content   string    `json:"content" gorm:"not null;default:''"`
-	Status    int8      `json:"status" gorm:"not null;default:0"`
+	// 备忘录/便笺 ID
+	ID uint `json:"id" gorm:"primary_key;not null;auto_increment"`
+	// 用户 ID
+	UID uint `json:"uid" gorm:"not null;default:0"`
+	// 备忘录/便笺名称
+	Name string `json:"name" gorm:"size:200;not null;default:''"`
+	// 备忘录/便笺内容
+	Content string `json:"content" gorm:"not null;default:''"`
+	// 备忘录/便笺状态（0正常，1归档，2回收站，3已删除）
+	Status int8 `json:"status" gorm:"not null;default:0"`
+	// 创建时间
 	CreatedAt time.Time `json:"created_at" gorm:"not null;default:current_timestamp"`
+	// 更新时间
 	UpdatedAt time.Time `json:"updated_at" gorm:"not null;default:current_timestamp"`
 }
 

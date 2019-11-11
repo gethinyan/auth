@@ -3,7 +3,6 @@ package v1
 import (
 	"fmt"
 	"net/http"
-	"strconv"
 
 	"e.coding.net/handnote/handnote/models"
 	"e.coding.net/handnote/handnote/pkg/util"
@@ -11,9 +10,29 @@ import (
 )
 
 // ListMemo 备忘录/便笺列表
+// ListMemo swagger:route GET /memos ListMemoRequest
+//
+// 备忘录/便笺列表
+//
+//     Schemes: http, https
+//
+//     Responses:
+//       200: ListMemoResponse
 func ListMemo(c *gin.Context) {
 	memos := models.GetMemoList(util.UID)
 	c.JSON(http.StatusOK, gin.H{"data": memos})
+}
+
+// ListMemoResponse 备忘录/便笺列表响应参数
+// swagger:response ListMemoResponse
+type ListMemoResponse struct {
+	// in: body
+	Body struct {
+		// 响应信息
+		Message string `json:"message"`
+		// 备忘录/便笺列表
+		Data []models.Memo `json:"data"`
+	}
 }
 
 // SyncMemoRequestForm 同步备忘录/便笺表单
@@ -40,9 +59,24 @@ type SyncMemoRequest struct {
 // SyncMemoResponse 同步备忘录/便笺响应参数
 // swagger:response SyncMemoResponse
 type SyncMemoResponse struct {
+	// in: body
+	Body struct {
+		// 响应信息
+		Message string `json:"message"`
+		// 备忘录/便笺列表
+		Data []models.Memo `json:"data"`
+	}
 }
 
 // SyncMemo 同步备忘录/便笺
+// SyncMemo swagger:route POST /syncMemo SyncMemoRequest
+//
+// 同步备忘录/便笺
+//
+//     Schemes: http, https
+//
+//     Responses:
+//       200: SyncMemoResponse
 func SyncMemo(c *gin.Context) {
 	var request SyncMemoRequestForm
 	if err := c.Bind(&request); err != nil {
@@ -72,30 +106,4 @@ func SyncMemo(c *gin.Context) {
 	}
 	memos := models.GetMemoList(util.UID)
 	c.JSON(http.StatusOK, gin.H{"data": memos})
-}
-
-// UpdateMemo 创建备忘录/便笺
-func UpdateMemo(c *gin.Context) {
-	var request models.MemoRequestBody
-	if err := c.Bind(&request); err != nil {
-		fmt.Println(err)
-		c.JSON(http.StatusBadRequest, gin.H{"message": "验证失败"})
-		return
-	}
-	id, err := strconv.Atoi(c.Param("id"))
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"message": "ID错误"})
-		return
-	}
-	memo := models.Memo{
-		ID:      uint(id),
-		Name:    request.Name,
-		Content: request.Content,
-	}
-	if err := models.SaveMemo(&memo); err != nil {
-		fmt.Println(err)
-		c.JSON(http.StatusBadRequest, gin.H{"message": "创建备忘录/便笺失败"})
-		return
-	}
-	c.JSON(http.StatusOK, gin.H{"data": memo})
 }
