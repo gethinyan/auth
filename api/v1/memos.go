@@ -6,12 +6,13 @@ import (
 	"strconv"
 
 	"e.coding.net/handnote/handnote/models"
+	"e.coding.net/handnote/handnote/pkg/util"
 	"github.com/gin-gonic/gin"
 )
 
 // ListMemo 备忘录/便笺列表
 func ListMemo(c *gin.Context) {
-	memos := models.GetMemoList()
+	memos := models.GetMemoList(util.UID)
 	c.JSON(http.StatusOK, gin.H{"data": memos})
 }
 
@@ -69,7 +70,7 @@ func SyncMemo(c *gin.Context) {
 	if len(request.Delete) > 0 {
 		models.DeleteBatchMemo(request.Delete)
 	}
-	memos := models.GetMemoList()
+	memos := models.GetMemoList(util.UID)
 	c.JSON(http.StatusOK, gin.H{"data": memos})
 }
 

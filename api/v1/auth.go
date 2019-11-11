@@ -91,6 +91,12 @@ func SignUp(c *gin.Context) {
 			return
 		}
 	}
+	// 验证邮箱是否唯一
+	userDetail, _ := models.GetUserByEmail(request.Email)
+	if userDetail.ID != 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"message": "该邮箱已注册"})
+		return
+	}
 	user := models.User{
 		Phone:     request.Phone,
 		Email:     request.Email,
@@ -155,7 +161,7 @@ func SignIn(c *gin.Context) {
 	}
 	user, err := models.GetUserByEmail(request.Email)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"message": "创建用户失败"})
+		c.JSON(http.StatusBadRequest, gin.H{"message": "找不到该邮箱用户"})
 		return
 	}
 	// 检查 password

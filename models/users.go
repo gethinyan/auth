@@ -78,8 +78,8 @@ type UserResponseBody struct {
 }
 
 // GetUserByID 通过 ID 获取用户信息
-func GetUserByID(id int) (user User, err error) {
-	if err = dbConn.Where(User{ID: uint(id)}).Find(&user).Error; err != nil {
+func GetUserByID(id uint) (user User, err error) {
+	if err = dbConn.Where(User{ID: id}).Find(&user).Error; err != nil {
 		return
 	}
 	return

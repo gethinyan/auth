@@ -3,6 +3,8 @@ package models
 import (
 	"fmt"
 	"time"
+
+	"e.coding.net/handnote/handnote/pkg/util"
 )
 
 // MemoModule 备忘录/便笺表模块
@@ -24,7 +26,7 @@ func (Memo) TableName() string {
 // Memo 定义备忘录/便笺表对应的结构
 type Memo struct {
 	ID        uint      `json:"id" gorm:"primary_key;not null;auto_increment"`
-	UserID    uint      `json:"user_id" gorm:"not null;default:0"`
+	UID       uint      `json:"uid" gorm:"not null;default:0"`
 	Name      string    `json:"name" gorm:"size:200;not null;default:''"`
 	Content   string    `json:"content" gorm:"not null;default:''"`
 	Status    int8      `json:"status" gorm:"not null;default:0"`
@@ -45,7 +47,7 @@ type MemoRequestBody struct {
 // MemoResponseBody 备忘录/便笺响应参数
 type MemoResponseBody struct {
 	// 备忘录/便笺 ID
-	ID string `json:"id"`
+	ID uint `json:"id"`
 	// 备忘录/便笺名
 	Name string `json:"name"`
 	// 备忘录/便笺内容
@@ -59,8 +61,8 @@ type MemoResponseBody struct {
 }
 
 // GetMemoList 获取备忘录/便笺列表
-func GetMemoList() (memos []Memo) {
-	dbConn.Find(&memos)
+func GetMemoList(uid uint) (memos []Memo) {
+	dbConn.Where("uid = ?", uid).Find(&memos)
 	return
 }
 
@@ -75,14 +77,14 @@ func SaveMemo(memo *Memo) error {
 
 // InsertBatchMemo 批量新增备忘录/便笺
 func InsertBatchMemo(memos []MemoRequestBody) bool {
-	sql := "INSERT INTO memos (name, content) VALUES "
+	sql := "INSERT INTO memos (uid, name, content) VALUES "
 	// 循环 memos 数组，组合 sql 语句
 	for key, memo := range memos {
 		if len(memos)-1 == key {
 			// 最后一条数据以分号结尾
-			sql += fmt.Sprintf("('%s', '%s');", memo.Name, memo.Content)
+			sql += fmt.Sprintf("('%d', '%s', '%s');", util.UID, memo.Name, memo.Content)
 		} else {
-			sql += fmt.Sprintf("('%s', '%s'),", memo.Name, memo.Content)
+			sql += fmt.Sprintf("('%d', '%s', '%s'),", util.UID, memo.Name, memo.Content)
 		}
 	}
 	dbConn.Exec(sql)

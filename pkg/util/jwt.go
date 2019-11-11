@@ -7,8 +7,8 @@ import (
 	"github.com/dgrijalva/jwt-go"
 )
 
-// UserID token 解析出的用户 ID
-var UserID uint
+// UID token 解析出的用户 ID
+var UID uint
 
 var jwtSecret = []byte(setting.App.JwtSecret)
 
@@ -56,7 +56,7 @@ func ParseToken(token string) (*Claims, error) {
 
 	if tokenClaims != nil {
 		if claims, ok := tokenClaims.Claims.(*Claims); ok && tokenClaims.Valid {
-			UserID = claims.ID
+			UID = claims.ID
 			return claims, nil
 		}
 	}

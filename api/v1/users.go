@@ -3,7 +3,6 @@ package v1
 import (
 	"fmt"
 	"net/http"
-	"strconv"
 
 	"e.coding.net/handnote/handnote/models"
 	"e.coding.net/handnote/handnote/pkg/util"
@@ -40,17 +39,7 @@ type GetUserResponse struct {
 //     Responses:
 //       200: GetUserResponse
 func GetUserInfo(c *gin.Context) {
-	id, err := strconv.Atoi(c.Param("id"))
-	fmt.Println(util.UserID)
-	if uint(id) != util.UserID {
-		c.JSON(http.StatusBadRequest, gin.H{"message": "越权访问"})
-		return
-	}
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"message": "ID错误"})
-		return
-	}
-	user, err := models.GetUserByID(id)
+	user, err := models.GetUserByID(util.UID)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"message": "获取用户信息失败"})
 		return
@@ -93,13 +82,8 @@ func UpdateUser(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"message": "验证失败"})
 		return
 	}
-	id, err := strconv.Atoi(c.Param("id"))
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"message": "ID错误"})
-		return
-	}
 	user := models.User{
-		ID:        uint(id),
+		ID:        util.UID,
 		UserName:  request.UserName,
 		Phone:     request.Phone,
 		Password:  request.Password,
