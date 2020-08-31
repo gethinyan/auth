@@ -25,7 +25,6 @@ type DatabaseSection struct {
 	Dbname   string `yaml:"dbname"`
 	User     string `yaml:"user"`
 	Password string `yaml:"password"`
-	Sslmode  string `yaml:"sslmode"`
 }
 
 // RedisSection app.yaml redis 配置
