@@ -12,6 +12,11 @@ definitions:
         format: date-time
         type: string
         x-go-name: CreatedAt
+      deleted_at:
+        description: 删除时间
+        format: date-time
+        type: string
+        x-go-name: DeletedAt
       id:
         description: 备忘录/便笺 ID
         format: uint64
@@ -203,7 +208,7 @@ info:
     email: gethin.yan@gmail.com
     name: gethin
     url: http://notes.gethin.cn
-  description: Handnote 接口文档
+  description: Enterprise 接口文档
   title: API.
   version: 0.0.1
 paths:

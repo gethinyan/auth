@@ -1,6 +1,6 @@
 // Package v1 API.
 //
-// Handnote 接口文档
+// Enterprise 接口文档
 //
 //      Schemes: http, https
 //      BasePath: /v1

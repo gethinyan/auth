@@ -15,7 +15,7 @@ func SendEmail(email string, userName string, code int) error {
 	subject := setting.Email.Subject
 	to := mail.NewEmail(userName, email)
 	plainTextContent := setting.Email.Subject
-	htmlContent := fmt.Sprintf("<p>尊敬的Handnote用户%s：</p><p>您好!</p><p>您的验证码是：%d。</p>", userName, code)
+	htmlContent := fmt.Sprintf("<p>尊敬的Enterprise用户%s：</p><p>您好!</p><p>您的验证码是：%d。</p>", userName, code)
 	message := mail.NewSingleEmail(from, subject, to, plainTextContent, htmlContent)
 	fmt.Println(os.Getenv("SENDGRID_API_KEY"))
 	client := sendgrid.NewSendClient(os.Getenv("SENDGRID_API_KEY"))

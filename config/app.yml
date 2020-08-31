@@ -1,5 +1,5 @@
 app:
-  jwt_secret: handnote
+  jwt_secret: Enterprise
 
 server:
   http_port: 9090
@@ -7,7 +7,7 @@ server:
 database:
   host: 127.0.0.1
   port: 3306
-  dbname: handnote
+  dbname: Enterprise
   user: root
   password: 123456
 
@@ -18,8 +18,8 @@ redis:
 
 email:
   from: no-reply@gethin.cn
-  from_subject: Handnote
-  subject: Handnote验证码
+  from_subject: Enterprise
+  subject: Enterprise验证码
 
 code:
   min: 100000

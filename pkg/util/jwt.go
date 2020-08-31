@@ -38,7 +38,7 @@ func GenerateToken(id uint, email string) (string, error) {
 		GetTokenExpireTime(),
 		jwt.StandardClaims{
 			ExpiresAt: GetRefreshTokenExpireTime(),
-			Issuer:    "handnote",
+			Issuer:    "enterprise",
 		},
 	}
 

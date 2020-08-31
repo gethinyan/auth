@@ -4,9 +4,9 @@
 
 ```bash
 $ git clone -b server https://github.com/gethinyan/enterprise.git
-$ cd handnote
+$ cd enterprise
 $ source ./sendgrid.env
-$ go run handnote.go
+$ go run enterprise.go
 # Then, visit the address http:/localhost:9090/hello.
 ```
 
@@ -17,9 +17,9 @@ $ brew install postgresql
 $ brew services start postgresql
 $ psql postgres
 
-CREATE ROLE handnote WITH LOGIN PASSWORD '123456';
-CREATE DATABASE handnote;
-ALTER ROLE handnote Superuser;
+CREATE ROLE enterprise WITH LOGIN PASSWORD '123456';
+CREATE DATABASE enterprise;
+ALTER ROLE enterprise Superuser;
 ```
 
 ## Initial Redis
