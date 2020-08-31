@@ -3,6 +3,7 @@ package models
 import (
 	"fmt"
 	"log"
+	"time"
 
 	"e.coding.net/handnote/handnote/pkg/setting"
 	"gorm.io/driver/mysql"
@@ -35,6 +36,11 @@ func init() {
 	if err != nil {
 		log.Fatalln(err)
 	}
+	// SetMaxIdleConns 设置空闲连接池中连接的最大数量
 	sqlDB.SetMaxIdleConns(10)
+	// SetMaxOpenConns 设置打开数据库连接的最大数量。
 	sqlDB.SetMaxOpenConns(100)
+	// SetConnMaxLifetime 设置了连接可复用的最大时间。
+	sqlDB.SetConnMaxLifetime(time.Hour)
+
 }
