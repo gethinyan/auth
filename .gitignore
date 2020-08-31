@@ -1,4 +1,5 @@
 go.mod
 dump.rdb
 enterprise
-
+.idea
+.vscode
