@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"e.coding.net/handnote/handnote/pkg/setting"
+	"github.com/gethinyan/enterprise/pkg/setting"
 	"github.com/sendgrid/sendgrid-go"
 	"github.com/sendgrid/sendgrid-go/helpers/mail"
 )

@@ -37,7 +37,7 @@ definitions:
         type: string
         x-go-name: UpdatedAt
     type: object
-    x-go-package: e.coding.net/handnote/handnote/models
+    x-go-package: github.com/gethinyan/enterprise/models
   MemoRequestBody:
     description: MemoRequestBody 备忘录/便笺请求参数
     properties:
@@ -55,7 +55,7 @@ definitions:
         type: string
         x-go-name: Name
     type: object
-    x-go-package: e.coding.net/handnote/handnote/models
+    x-go-package: github.com/gethinyan/enterprise/models
   SignInRequestBody:
     description: SignInRequestBody 用户登录参数
     properties:
@@ -71,7 +71,7 @@ definitions:
     - email
     - password
     type: object
-    x-go-package: e.coding.net/handnote/handnote/api/v1
+    x-go-package: github.com/gethinyan/enterprise/api/v1
   SyncMemoRequestForm:
     description: SyncMemoRequestForm 同步备忘录/便笺表单
     properties:
@@ -106,7 +106,7 @@ definitions:
         type: array
         x-go-name: Update
     type: object
-    x-go-package: e.coding.net/handnote/handnote/api/v1
+    x-go-package: github.com/gethinyan/enterprise/api/v1
   UserRequestBody:
     description: UserRequestBody 用户请求参数
     properties:
@@ -156,7 +156,7 @@ definitions:
     - password
     - gender
     type: object
-    x-go-package: e.coding.net/handnote/handnote/models
+    x-go-package: github.com/gethinyan/enterprise/models
   UserResponseBody:
     description: UserResponseBody 用户响应参数
     properties:
@@ -196,7 +196,7 @@ definitions:
         type: string
         x-go-name: UserName
     type: object
-    x-go-package: e.coding.net/handnote/handnote/models
+    x-go-package: github.com/gethinyan/enterprise/models
 host: localhost:9090
 info:
   contact:

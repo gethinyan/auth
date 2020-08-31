@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	"e.coding.net/handnote/handnote/pkg/setting"
+	"github.com/gethinyan/enterprise/pkg/setting"
 	"gorm.io/driver/mysql"
 	_ "gorm.io/driver/mysql" // mysql driver
 	"gorm.io/gorm"

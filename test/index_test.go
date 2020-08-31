@@ -5,7 +5,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"e.coding.net/handnote/handnote/routes"
+	"github.com/gethinyan/enterprise/routes"
 	"github.com/stretchr/testify/assert"
 )
 

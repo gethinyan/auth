@@ -1,7 +1,7 @@
 package redis
 
 import (
-	"e.coding.net/handnote/handnote/pkg/setting"
+	"github.com/gethinyan/enterprise/pkg/setting"
 	"github.com/go-redis/redis"
 )
 

@@ -1,8 +1,8 @@
 package routes
 
 import (
-	apiV1 "e.coding.net/handnote/handnote/api/v1"
-	"e.coding.net/handnote/handnote/middleware/jwt"
+	apiV1 "github.com/gethinyan/enterprise/api/v1"
+	"github.com/gethinyan/enterprise/middleware/jwt"
 	"github.com/gin-gonic/gin"
 )
 

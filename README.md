@@ -3,7 +3,7 @@
 ## Getting Start
 
 ```bash
-$ git clone -b server https://e.coding.net/handnote/handnote.git
+$ git clone -b server https://github.com/gethinyan/enterprise.git
 $ cd handnote
 $ source ./sendgrid.env
 $ go run handnote.go

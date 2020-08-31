@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"e.coding.net/handnote/handnote/pkg/util"
+	"github.com/gethinyan/enterprise/pkg/util"
 	"gorm.io/gorm"
 )
 

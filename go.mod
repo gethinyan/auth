@@ -1,4 +1,4 @@
-module e.coding.net/handnote/handnote
+module github.com/gethinyan/enterprise
 
 go 1.12
 

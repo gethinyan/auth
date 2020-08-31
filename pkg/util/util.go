@@ -4,7 +4,7 @@ import (
 	"math/rand"
 	"time"
 
-	"e.coding.net/handnote/handnote/pkg/setting"
+	"github.com/gethinyan/enterprise/pkg/setting"
 	"golang.org/x/crypto/bcrypt"
 )
 

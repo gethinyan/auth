@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"e.coding.net/handnote/handnote/models"
-	"e.coding.net/handnote/handnote/pkg/util"
+	"github.com/gethinyan/enterprise/models"
+	"github.com/gethinyan/enterprise/pkg/util"
 	"github.com/gin-gonic/gin"
 )
 

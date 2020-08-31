@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"time"
 
-	"e.coding.net/handnote/handnote/pkg/redis"
-	"e.coding.net/handnote/handnote/pkg/util"
+	"github.com/gethinyan/enterprise/pkg/redis"
+	"github.com/gethinyan/enterprise/pkg/util"
 	"github.com/gin-gonic/gin"
 )
 

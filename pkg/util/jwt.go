@@ -3,8 +3,8 @@ package util
 import (
 	"time"
 
-	"e.coding.net/handnote/handnote/pkg/setting"
 	"github.com/dgrijalva/jwt-go"
+	"github.com/gethinyan/enterprise/pkg/setting"
 )
 
 // UID token 解析出的用户 ID
