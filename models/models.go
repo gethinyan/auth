@@ -31,10 +31,10 @@ func init() {
 	dbConn.AutoMigrate(&User{})
 	dbConn.AutoMigrate(&Memo{})
 	dbConn.AutoMigrate(&Version{})
-	dbConnDB, err := dbConn.DB()
+	sqlDB, err := dbConn.DB()
 	if err != nil {
 		log.Fatalln(err)
 	}
-	dbConnDB.SetMaxIdleConns(10)
-	dbConnDB.SetMaxOpenConns(100)
+	sqlDB.SetMaxIdleConns(10)
+	sqlDB.SetMaxOpenConns(100)
 }
