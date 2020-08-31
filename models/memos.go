@@ -36,9 +36,9 @@ type Memo struct {
 	// 备忘录/便笺状态（0正常，1归档，2回收站，3已删除）
 	Status int8 `json:"status" gorm:"not null;default:0"`
 	// 创建时间
-	CreatedAt time.Time `json:"created_at" gorm:"not null;default:current_timestamp"`
+	CreatedAt time.Time `json:"created_at" gorm:"null;default:null"`
 	// 更新时间
-	UpdatedAt time.Time `json:"updated_at" gorm:"not null;default:current_timestamp"`
+	UpdatedAt time.Time `json:"updated_at" gorm:"null;default:null"`
 }
 
 // MemoRequestBody 备忘录/便笺请求参数

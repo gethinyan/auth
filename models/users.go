@@ -22,10 +22,10 @@ type User struct {
 	Password  string    `json:"password" gorm:"type:char(60);not null;default:''"`
 	Address   string    `json:"address" gorm:"size:200;not null;default:''"`
 	Gender    int8      `json:"gender" gorm:"not null;default:1"`
-	Birth     time.Time `json:"birth" gorm:"not null;type:date;default:'1970-01-01'"`
+	Birth     time.Time `json:"birth" gorm:"null;type:date;default:null"`
 	AvatarURL string    `json:"avatar_url" gorm:"size:200;not null;default:''"`
-	CreatedAt time.Time `json:"created_at" gorm:"not null;default:current_timestamp"`
-	UpdatedAt time.Time `json:"updated_at" gorm:"not null;default:current_timestamp"`
+	CreatedAt time.Time `json:"created_at" gorm:"null;default:null"`
+	UpdatedAt time.Time `json:"updated_at" gorm:"null;default:null"`
 }
 
 // UserRequestBody 用户请求参数
