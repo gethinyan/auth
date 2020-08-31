@@ -15,7 +15,7 @@ func (User) TableName() string {
 
 // User 定义用户表对应的结构
 type User struct {
-	ID        uint      `json:"id" gorm:"primary_key;not null;auto_increment"`
+	ID        uint      `json:"id" gorm:"primaryKey;not null;autoIncrement"`
 	Phone     string    `json:"phone" gorm:"type:char(11);not null;default:''"`
 	Email     string    `json:"email" gorm:"size:50;not null;default:''"`
 	UserName  string    `json:"user_name" gorm:"size:50;not null;default:''"`

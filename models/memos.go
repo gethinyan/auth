@@ -26,7 +26,7 @@ func (Memo) TableName() string {
 // Memo 定义备忘录/便笺表对应的结构
 type Memo struct {
 	// 备忘录/便笺 ID
-	ID uint `json:"id" gorm:"primary_key;not null;auto_increment"`
+	ID uint `json:"id" gorm:"primaryKey;not null;autoIncrement"`
 	// 用户 ID
 	UID uint `json:"uid" gorm:"not null;default:0"`
 	// 备忘录/便笺名称

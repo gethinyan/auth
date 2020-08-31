@@ -11,7 +11,7 @@ func (Version) TableName() string {
 
 // Version 定义版本表对应的结构
 type Version struct {
-	ID      uint   `json:"id" gorm:"primary_key;not null;auto_increment"`
+	ID      uint   `json:"id" gorm:"primaryKey;not null;autoIncrement"`
 	Module  string `json:"module" gorm:"size:50;not null;default:''"`
 	Version int    `json:"version" gorm:"not null;default:0"`
 }
