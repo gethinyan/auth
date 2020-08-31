@@ -15,17 +15,30 @@ func (User) TableName() string {
 
 // User 定义用户表对应的结构
 type User struct {
-	ID        uint      `json:"id" gorm:"primaryKey;not null;autoIncrement"`
-	Phone     string    `json:"phone" gorm:"type:char(11);not null;default:''"`
-	Email     string    `json:"email" gorm:"size:50;not null;default:''"`
-	UserName  string    `json:"user_name" gorm:"size:50;not null;default:''"`
-	Password  string    `json:"password" gorm:"type:char(60);not null;default:''"`
-	Address   string    `json:"address" gorm:"size:200;not null;default:''"`
-	Gender    int8      `json:"gender" gorm:"not null;default:1"`
-	Birth     time.Time `json:"birth" gorm:"null;type:date;default:null"`
-	AvatarURL string    `json:"avatar_url" gorm:"size:200;not null;default:''"`
+	// 用户 ID
+	ID uint `json:"id" gorm:"primaryKey;not null;autoIncrement"`
+	// 手机号
+	Phone string `json:"phone" gorm:"type:char(11);not null;default:''"`
+	// 邮箱
+	Email string `json:"email" gorm:"size:50;not null;default:''"`
+	// 用户名
+	UserName string `json:"user_name" gorm:"size:50;not null;default:''"`
+	// 密码
+	Password string `json:"password" gorm:"type:char(60);not null;default:''"`
+	// 地址
+	Address string `json:"address" gorm:"size:200;not null;default:''"`
+	// 性别（1 男、2 女）
+	Gender int8 `json:"gender" gorm:"not null;default:1"`
+	// 生日（格式 2020-01-01）
+	Birth time.Time `json:"birth" gorm:"null;type:date;default:null"`
+	// 头像地址
+	AvatarURL string `json:"avatar_url" gorm:"size:200;not null;default:''"`
+	// 创建时间
 	CreatedAt time.Time `json:"created_at" gorm:"null;default:null"`
+	// 更新时间
 	UpdatedAt time.Time `json:"updated_at" gorm:"null;default:null"`
+	// 删除时间
+	DeletedAt time.Time `json:"deleted_at" gorm:"null;default:null"`
 }
 
 // UserRequestBody 用户请求参数

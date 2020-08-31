@@ -39,6 +39,8 @@ type Memo struct {
 	CreatedAt time.Time `json:"created_at" gorm:"null;default:null"`
 	// 更新时间
 	UpdatedAt time.Time `json:"updated_at" gorm:"null;default:null"`
+	// 删除时间
+	DeletedAt time.Time `json:"deleted_at" gorm:"null;default:null"`
 }
 
 // MemoRequestBody 备忘录/便笺请求参数
