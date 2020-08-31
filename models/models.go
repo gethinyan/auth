@@ -5,8 +5,9 @@ import (
 	"log"
 
 	"e.coding.net/handnote/handnote/pkg/setting"
-	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/postgres" // postgres driver
+	"gorm.io/driver/mysql"
+	_ "gorm.io/driver/mysql" // mysql driver
+	"gorm.io/gorm"
 )
 
 var dbConn *gorm.DB
@@ -15,16 +16,25 @@ var dbConn *gorm.DB
 func init() {
 	var err error
 
-	connStr := fmt.Sprintf("host=%s port=%d user=%s dbname=%s sslmode=%s password=%s",
-		setting.Database.Host, setting.Database.Port, setting.Database.User,
-		setting.Database.Dbname, setting.Database.Sslmode, setting.Database.Password)
-	dbConn, err = gorm.Open("postgres", connStr)
+	dsn := fmt.Sprintf(
+		"%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local",
+		setting.Database.User,
+		setting.Database.Password,
+		setting.Database.Host,
+		setting.Database.Port,
+		setting.Database.Dbname,
+	)
+	dbConn, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatalln(err)
 	}
 	dbConn.AutoMigrate(&User{})
 	dbConn.AutoMigrate(&Memo{})
 	dbConn.AutoMigrate(&Version{})
-	dbConn.DB().SetMaxIdleConns(10)
-	dbConn.DB().SetMaxOpenConns(100)
+	dbConnDB, err := dbConn.DB()
+	if err != nil {
+		log.Fatalln(err)
+	}
+	dbConnDB.SetMaxIdleConns(10)
+	dbConnDB.SetMaxOpenConns(100)
 }

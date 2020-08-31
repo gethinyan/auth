@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"e.coding.net/handnote/handnote/pkg/util"
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
 )
 
 // TableName 指定用户表表名
@@ -94,11 +94,10 @@ func GetUserByEmail(email string) (user User, err error) {
 }
 
 // BeforeSave ...
-func (user *User) BeforeSave(scope *gorm.Scope) (err error) {
+func (user *User) BeforeSave(dbConn *gorm.DB) (err error) {
 	if user.Password, err = util.GeneratePassword(user.Password); err != nil {
 		return
 	}
-	scope.SetColumn("Password", user.Password)
 	return
 }
 
