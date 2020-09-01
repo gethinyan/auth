@@ -116,12 +116,6 @@ func SignUp(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"message": "创建用户失败"})
 		return
 	}
-	// 注册成功后新增用户版本信息
-	curVersion := 1
-	models.SaveVersion(&models.Version{
-		Module:  models.MemoModule,
-		Version: curVersion,
-	})
 	// 生成 token
 	token, err := util.GenerateToken(user.ID, user.Email)
 	if err != nil {

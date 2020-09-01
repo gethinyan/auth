@@ -18,11 +18,11 @@ type User struct {
 	// 用户 ID
 	ID uint `json:"id" gorm:"primaryKey;not null;autoIncrement"`
 	// 手机号
-	Phone string `json:"phone" gorm:"type:char(11);not null;default:''"`
+	Phone string `json:"phone" gorm:"uniqueIndex:uk_phone;type:char(11);not null;default:''"`
 	// 邮箱
-	Email string `json:"email" gorm:"size:50;not null;default:''"`
+	Email string `json:"email" gorm:"uniqueIndex:uk_email;size:50;not null;default:''"`
 	// 用户名
-	Username string `json:"username" gorm:"size:50;not null;default:''"`
+	Username string `json:"username" gorm:"uniqueIndex:uk_username;size:50;not null;default:''"`
 	// 密码
 	Password string `json:"password" gorm:"type:char(60);not null;default:''"`
 	// 昵称
@@ -30,13 +30,13 @@ type User struct {
 	// 地址
 	Address string `json:"address" gorm:"size:200;not null;default:''"`
 	// 注册 IP
-	RegIP string `json:"reg_ip" gorm:"size:50;not null;default:''"`
+	RegIP string `json:"reg_ip" gorm:"uniqueIndex:uk_ip;size:50;not null;default:''"`
 	// 注册地址（省市区）
 	RegAddr string `json:"reg_addr" gorm:"size:50;not null;default:''"`
 	// 性别（1 男、2 女）
 	Gender int8 `json:"gender" gorm:"not null;default:1"`
 	// 生日（格式 2020-01-01）
-	Birth time.Time `json:"birth" gorm:"null;type:date;default:null"`
+	Birth time.Time `json:"birth" gorm:"uniqueIndex:uk_birth;null;type:date;default:null"`
 	// 头像地址
 	AvatarURL string `json:"avatar_url" gorm:"size:200;not null;default:''"`
 	// 创建时间

@@ -19,8 +19,6 @@ func SetupRouter() *gin.Engine {
 		{
 			v1.GET("/users/:id", apiV1.GetUserInfo)
 			v1.PUT("/users/:id", apiV1.UpdateUser)
-			v1.GET("/memos", apiV1.ListMemo)
-			v1.POST("/memos/syncMemo", apiV1.SyncMemo)
 		}
 	}
 

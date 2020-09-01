@@ -29,8 +29,6 @@ func init() {
 		log.Fatalln(err)
 	}
 	dbConn.AutoMigrate(&User{})
-	dbConn.AutoMigrate(&Memo{})
-	dbConn.AutoMigrate(&Version{})
 	sqlDB, err := dbConn.DB()
 	if err != nil {
 		log.Fatalln(err)
@@ -41,5 +39,4 @@ func init() {
 	sqlDB.SetMaxOpenConns(100)
 	// SetConnMaxLifetime 设置了连接可复用的最大时间
 	sqlDB.SetConnMaxLifetime(time.Hour)
-
 }
