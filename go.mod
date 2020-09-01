@@ -15,8 +15,6 @@ require (
 	github.com/onsi/ginkgo v1.7.0 // indirect
 	github.com/onsi/gomega v1.4.3 // indirect
 	github.com/oschwald/geoip2-golang v1.4.0
-	github.com/sendgrid/rest v2.6.1+incompatible // indirect
-	github.com/sendgrid/sendgrid-go v3.6.2+incompatible
 	github.com/stretchr/testify v1.4.0
 	golang.org/x/crypto v0.0.0-20200820211705-5c72a883971a
 	golang.org/x/net v0.0.0-20200324143707-d3edc9973b7e // indirect

@@ -2,11 +2,9 @@ package v1
 
 import (
 	"net/http"
-	"time"
 
 	"github.com/gethinyan/enterprise/models"
 	"github.com/gethinyan/enterprise/pkg/redis"
-	"github.com/gethinyan/enterprise/pkg/setting"
 	"github.com/gethinyan/enterprise/pkg/util"
 	"github.com/gin-gonic/gin"
 )
@@ -31,30 +29,6 @@ type SignResponse struct {
 		// 用户信息
 		Data models.UserResponseBody `json:"data"`
 	}
-}
-
-// SendEmail swagger:route GET /sendEmail sendEmailRequest
-//
-// 发送邮件
-//
-//     Schemes: http, https
-//
-//     Responses:
-//       200: SignResponse
-func SendEmail(c *gin.Context) {
-	var request SendEmailRequest
-	if err := c.Bind(&request); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"message": "please confirm the email is valid."})
-		return
-	}
-	code := util.RandomCode()
-	if err := util.SendEmail(request.Email, request.Username, code); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"message": "send email fail."})
-		return
-	}
-	key := "hd:" + request.Email
-	redis.RedisClient.Set(key, code, setting.Code.ValidityPeriod*time.Minute)
-	c.JSON(http.StatusOK, gin.H{"message": "send email success."})
 }
 
 // SignUpRequest 用户注册请求参数

@@ -28,7 +28,7 @@ func init() {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	// dbConn.AutoMigrate(&User{})
+	dbConn.AutoMigrate(&User{})
 	sqlDB, err := dbConn.DB()
 	if err != nil {
 		log.Fatalln(err)
