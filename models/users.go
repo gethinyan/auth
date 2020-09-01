@@ -22,7 +22,7 @@ type User struct {
 	// 邮箱
 	Email string `json:"email" gorm:"size:50;not null;default:''"`
 	// 用户名
-	Username string `json:"user_name" gorm:"size:50;not null;default:''"`
+	Username string `json:"username" gorm:"size:50;not null;default:''"`
 	// 密码
 	Password string `json:"password" gorm:"type:char(60);not null;default:''"`
 	// 昵称
@@ -58,7 +58,7 @@ type UserRequestBody struct {
 	Email string `json:"email" binding:"required,email"`
 	// 用户名
 	// Required: true
-	Username string `json:"user_name" binding:"required"`
+	Username string `json:"username" binding:"required"`
 	// 密码
 	// Required: true
 	Password string `json:"password" binding:"required"`
@@ -87,7 +87,7 @@ type UserResponseBody struct {
 	// 邮箱地址
 	Email string `json:"email"`
 	// 用户名
-	Username string `json:"user_name"`
+	Username string `json:"username"`
 	// 地址
 	Address string `json:"address"`
 	// 性别（0：女；1：男）

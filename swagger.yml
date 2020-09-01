@@ -154,14 +154,14 @@ definitions:
         description: 手机号
         type: string
         x-go-name: Phone
-      user_name:
+      username:
         description: 用户名
         type: string
         x-go-name: Username
     required:
     - phone
     - email
-    - user_name
+    - username
     - password
     - gender
     type: object
@@ -200,7 +200,7 @@ definitions:
         description: 手机号
         type: string
         x-go-name: Phone
-      user_name:
+      username:
         description: 用户名
         type: string
         x-go-name: Username
