@@ -63,7 +63,7 @@ type UserRequestBody struct {
 	// Required: true
 	Password string `json:"password" binding:"required"`
 	// 昵称
-	Nickname string `json:"nickname" binding:"required"`
+	Nickname string `json:"nickname"`
 	// 地址
 	Address string `json:"address"`
 	// 性别（0：女；1：男）
