@@ -15,7 +15,7 @@ definitions:
     - email
     - password
     type: object
-    x-go-package: github.com/gethinyan/enterprise/api/v1
+    x-go-package: github.com/gethinyan/auth/api/v1
   UserRequestBody:
     description: UserRequestBody 用户请求参数
     properties:
@@ -69,7 +69,7 @@ definitions:
     - password
     - gender
     type: object
-    x-go-package: github.com/gethinyan/enterprise/models
+    x-go-package: github.com/gethinyan/auth/models
   UserResponseBody:
     description: UserResponseBody 用户响应参数
     properties:
@@ -109,7 +109,7 @@ definitions:
         type: string
         x-go-name: Username
     type: object
-    x-go-package: github.com/gethinyan/enterprise/models
+    x-go-package: github.com/gethinyan/auth/models
 host: localhost:9090
 info:
   contact:

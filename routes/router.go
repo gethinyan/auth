@@ -1,8 +1,8 @@
 package routes
 
 import (
-	apiV1 "github.com/gethinyan/enterprise/api/v1"
-	"github.com/gethinyan/enterprise/middleware/jwt"
+	apiV1 "github.com/gethinyan/auth/api/v1"
+	"github.com/gethinyan/auth/middleware/jwt"
 	"github.com/gin-gonic/gin"
 )
 

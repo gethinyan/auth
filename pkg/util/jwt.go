@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
-	"github.com/gethinyan/enterprise/pkg/setting"
+	"github.com/gethinyan/auth/pkg/setting"
 )
 
 // UID token 解析出的用户 ID
@@ -38,7 +38,7 @@ func GenerateToken(id uint, email string) (string, error) {
 		GetTokenExpireTime(),
 		jwt.StandardClaims{
 			ExpiresAt: GetRefreshTokenExpireTime(),
-			Issuer:    "enterprise",
+			Issuer:    "auth",
 		},
 	}
 

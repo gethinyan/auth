@@ -3,10 +3,10 @@
 ## Getting Start
 
 ```bash
-$ git clone -b server https://github.com/gethinyan/enterprise.git
-$ cd enterprise
+$ git clone -b server https://github.com/gethinyan/auth.git
+$ cd auth
 $ source ./sendgrid.env
-$ go run enterprise.go
+$ go run auth.go
 # Then, visit the address http:/localhost:9090/hello.
 ```
 
@@ -17,9 +17,9 @@ $ brew install postgresql
 $ brew services start postgresql
 $ psql postgres
 
-CREATE ROLE enterprise WITH LOGIN PASSWORD '123456';
-CREATE DATABASE enterprise;
-ALTER ROLE enterprise Superuser;
+CREATE ROLE auth WITH LOGIN PASSWORD '123456';
+CREATE DATABASE auth;
+ALTER ROLE auth Superuser;
 ```
 
 ## Initial Redis

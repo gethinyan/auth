@@ -1,5 +1,5 @@
 go.mod
 dump.rdb
-enterprise
+auth
 .idea
 .vscode

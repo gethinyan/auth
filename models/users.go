@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/gethinyan/enterprise/pkg/util"
+	"github.com/gethinyan/auth/pkg/util"
 	"gorm.io/gorm"
 )
 

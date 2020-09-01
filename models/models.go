@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/gethinyan/enterprise/pkg/setting"
+	"github.com/gethinyan/auth/pkg/setting"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )

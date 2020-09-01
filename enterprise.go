@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 
-	"github.com/gethinyan/enterprise/pkg/setting"
-	"github.com/gethinyan/enterprise/routes"
+	"github.com/gethinyan/auth/pkg/setting"
+	"github.com/gethinyan/auth/routes"
 )
 
 func main() {

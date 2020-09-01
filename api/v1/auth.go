@@ -3,9 +3,9 @@ package v1
 import (
 	"net/http"
 
-	"github.com/gethinyan/enterprise/models"
-	"github.com/gethinyan/enterprise/pkg/redis"
-	"github.com/gethinyan/enterprise/pkg/util"
+	"github.com/gethinyan/auth/models"
+	"github.com/gethinyan/auth/pkg/redis"
+	"github.com/gethinyan/auth/pkg/util"
 	"github.com/gin-gonic/gin"
 )
 

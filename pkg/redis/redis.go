@@ -1,7 +1,7 @@
 package redis
 
 import (
-	"github.com/gethinyan/enterprise/pkg/setting"
+	"github.com/gethinyan/auth/pkg/setting"
 	"github.com/go-redis/redis"
 )
 
