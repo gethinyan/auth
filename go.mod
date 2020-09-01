@@ -1,4 +1,4 @@
-module github.com/gethinyan/enterprise
+module github.com/gethinyan/auth
 
 go 1.12
 
