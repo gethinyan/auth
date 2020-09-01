@@ -22,11 +22,17 @@ type User struct {
 	// 邮箱
 	Email string `json:"email" gorm:"size:50;not null;default:''"`
 	// 用户名
-	UserName string `json:"user_name" gorm:"size:50;not null;default:''"`
+	Username string `json:"user_name" gorm:"size:50;not null;default:''"`
 	// 密码
 	Password string `json:"password" gorm:"type:char(60);not null;default:''"`
+	// 昵称
+	Nickname string `json:"nickname" gorm:"size:50;not null;default:''"`
 	// 地址
 	Address string `json:"address" gorm:"size:200;not null;default:''"`
+	// 注册 IP
+	RegIP string `json:"reg_ip" gorm:"size:50;not null;default:''"`
+	// 注册地址（省市区）
+	RegAddr string `json:"reg_addr" gorm:"size:50;not null;default:''"`
 	// 性别（1 男、2 女）
 	Gender int8 `json:"gender" gorm:"not null;default:1"`
 	// 生日（格式 2020-01-01）
@@ -52,10 +58,12 @@ type UserRequestBody struct {
 	Email string `json:"email" binding:"required,email"`
 	// 用户名
 	// Required: true
-	UserName string `json:"user_name" binding:"required"`
+	Username string `json:"user_name" binding:"required"`
 	// 密码
 	// Required: true
 	Password string `json:"password" binding:"required"`
+	// 昵称
+	Nickname string `json:"nickname" binding:"required"`
 	// 地址
 	Address string `json:"address"`
 	// 性别（0：女；1：男）
@@ -79,7 +87,7 @@ type UserResponseBody struct {
 	// 邮箱地址
 	Email string `json:"email"`
 	// 用户名
-	UserName string `json:"user_name"`
+	Username string `json:"user_name"`
 	// 地址
 	Address string `json:"address"`
 	// 性别（0：女；1：男）
@@ -106,7 +114,7 @@ func GetUserByEmail(email string) (user User, err error) {
 	return
 }
 
-// BeforeSave ...
+// BeforeSave 保存用户信息前执行逻辑
 func (user *User) BeforeSave(dbConn *gorm.DB) (err error) {
 	if user.Password, err = util.GeneratePassword(user.Password); err != nil {
 		return
@@ -129,7 +137,7 @@ func (user *User) ConvertToResponse() UserResponseBody {
 		ID:        user.ID,
 		Phone:     user.Phone,
 		Email:     user.Email,
-		UserName:  user.UserName,
+		Username:  user.Username,
 		Address:   user.Address,
 		Gender:    user.Gender,
 		Birth:     user.Birth,

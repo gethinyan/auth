@@ -14,6 +14,7 @@ require (
 	github.com/modern-go/reflect2 v1.0.1 // indirect
 	github.com/onsi/ginkgo v1.7.0 // indirect
 	github.com/onsi/gomega v1.4.3 // indirect
+	github.com/oschwald/geoip2-golang v1.4.0
 	github.com/sendgrid/rest v2.6.1+incompatible // indirect
 	github.com/sendgrid/sendgrid-go v3.6.2+incompatible
 	github.com/stretchr/testify v1.4.0

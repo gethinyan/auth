@@ -18,7 +18,7 @@ type SendEmailRequest struct {
 	// Required: true
 	Email string `json:"email" binding:"required,email"`
 	// 用户名
-	UserName string `json:"user_name"`
+	Username string `json:"username"`
 }
 
 // SignResponse 用户注册/登录响应参数
@@ -48,7 +48,7 @@ func SendEmail(c *gin.Context) {
 		return
 	}
 	code := util.RandomCode()
-	if err := util.SendEmail(request.Email, request.UserName, code); err != nil {
+	if err := util.SendEmail(request.Email, request.Username, code); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"message": "send email fail."})
 		return
 	}
@@ -100,13 +100,18 @@ func SignUp(c *gin.Context) {
 	user := models.User{
 		Phone:     request.Phone,
 		Email:     request.Email,
-		UserName:  request.UserName,
+		Username:  request.Username,
 		Password:  request.Password,
 		Address:   request.Address,
 		Gender:    request.Gender,
 		Birth:     request.Birth,
 		AvatarURL: request.AvatarURL,
 	}
+	// 获取注册的 IP 和地址
+	user.RegIP = c.Request.Header.Get("")
+	user.RegIP = util.GetClientIP(c)
+	user.RegAddr = util.GetClientAddr(user.RegIP)
+
 	if err := models.SaveUser(&user); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"message": "创建用户失败"})
 		return

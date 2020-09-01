@@ -142,6 +142,10 @@ definitions:
         format: int8
         type: integer
         x-go-name: Gender
+      nickname:
+        description: 昵称
+        type: string
+        x-go-name: Nickname
       password:
         description: 密码
         type: string
@@ -153,7 +157,7 @@ definitions:
       user_name:
         description: 用户名
         type: string
-        x-go-name: UserName
+        x-go-name: Username
     required:
     - phone
     - email
@@ -199,7 +203,7 @@ definitions:
       user_name:
         description: 用户名
         type: string
-        x-go-name: UserName
+        x-go-name: Username
     type: object
     x-go-package: github.com/gethinyan/enterprise/models
 host: localhost:9090
@@ -235,9 +239,9 @@ paths:
         x-go-name: Email
       - description: 用户名
         in: query
-        name: user_name
+        name: username
         type: string
-        x-go-name: UserName
+        x-go-name: Username
       responses:
         "200":
           $ref: '#/responses/SignResponse'

@@ -84,7 +84,7 @@ func UpdateUser(c *gin.Context) {
 	}
 	user := models.User{
 		ID:        util.UID,
-		UserName:  request.UserName,
+		Username:  request.Username,
 		Phone:     request.Phone,
 		Password:  request.Password,
 		Email:     request.Email,

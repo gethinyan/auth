@@ -2,9 +2,13 @@ package util
 
 import (
 	"math/rand"
+	"net"
+	"strings"
 	"time"
 
 	"github.com/gethinyan/enterprise/pkg/setting"
+	"github.com/gin-gonic/gin"
+	"github.com/oschwald/geoip2-golang"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -40,4 +44,41 @@ func GeneratePassword(password string) (string, error) {
 func CheckPasswordHash(password, hash string) bool {
 	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
 	return err == nil
+}
+
+// GetClientIP 获取客户端 IP 地址
+func GetClientIP(c *gin.Context) string {
+	xForwardedFor := c.Request.Header.Get("X-Forwarded-For")
+	ip := strings.TrimSpace(strings.Split(xForwardedFor, ",")[0])
+	if ip != "" {
+		return ip
+	}
+
+	ip = strings.TrimSpace(c.Request.Header.Get("X-Real-Ip"))
+	if ip != "" {
+		return ip
+	}
+
+	if ip, _, err := net.SplitHostPort(strings.TrimSpace(c.Request.RemoteAddr)); err == nil {
+		return ip
+	}
+
+	return ""
+}
+
+// GetClientAddr 获取客户端地址
+func GetClientAddr(ip string) string {
+	db, err := geoip2.Open("GeoIP2-City.mmdb")
+	if err != nil {
+		return ""
+	}
+	defer db.Close()
+	// If you are using strings that may be invalid, check that ip is not nil
+	parseIP := net.ParseIP(ip)
+	record, err := db.City(parseIP)
+	if err != nil {
+		return ""
+	}
+
+	return record.City.Names["pt-BR"]
 }
