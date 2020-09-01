@@ -1,66 +1,5 @@
 basePath: /v1
 definitions:
-  Memo:
-    description: Memo 定义备忘录/便笺表对应的结构
-    properties:
-      content:
-        description: 备忘录/便笺内容
-        type: string
-        x-go-name: Content
-      created_at:
-        description: 创建时间
-        format: date-time
-        type: string
-        x-go-name: CreatedAt
-      deleted_at:
-        description: 删除时间
-        format: date-time
-        type: string
-        x-go-name: DeletedAt
-      id:
-        description: 备忘录/便笺 ID
-        format: uint64
-        type: integer
-        x-go-name: ID
-      name:
-        description: 备忘录/便笺名称
-        type: string
-        x-go-name: Name
-      status:
-        description: 备忘录/便笺状态（0正常，1归档，2回收站，3已删除）
-        format: int8
-        type: integer
-        x-go-name: Status
-      uid:
-        description: 用户 ID
-        format: uint64
-        type: integer
-        x-go-name: UID
-      updated_at:
-        description: 更新时间
-        format: date-time
-        type: string
-        x-go-name: UpdatedAt
-    type: object
-    x-go-package: github.com/gethinyan/enterprise/models
-  MemoRequestBody:
-    description: MemoRequestBody 备忘录/便笺请求参数
-    properties:
-      content:
-        description: 备忘录/便笺内容
-        type: string
-        x-go-name: Content
-      id:
-        description: 备忘录/便笺 ID（有就传）
-        format: uint64
-        type: integer
-        x-go-name: ID
-      name:
-        description: 备忘录/便笺名
-        type: string
-        x-go-name: Name
-    type: object
-    x-go-package: github.com/gethinyan/enterprise/models
   SignInRequestBody:
     description: SignInRequestBody 用户登录参数
     properties:
@@ -75,41 +14,6 @@ definitions:
     required:
     - email
     - password
-    type: object
-    x-go-package: github.com/gethinyan/enterprise/api/v1
-  SyncMemoRequestForm:
-    description: SyncMemoRequestForm 同步备忘录/便笺表单
-    properties:
-      add:
-        description: 新增备忘录/便笺
-        items:
-          $ref: '#/definitions/MemoRequestBody'
-        type: array
-        x-go-name: Add
-      archive:
-        description: 归档备忘录/便笺
-        items:
-          $ref: '#/definitions/MemoRequestBody'
-        type: array
-        x-go-name: Archive
-      delete:
-        description: 删除备忘录/便笺
-        items:
-          $ref: '#/definitions/MemoRequestBody'
-        type: array
-        x-go-name: Delete
-      restore:
-        description: 恢复备忘录/便笺
-        items:
-          $ref: '#/definitions/MemoRequestBody'
-        type: array
-        x-go-name: Restore
-      update:
-        description: 修改备忘录/便笺
-        items:
-          $ref: '#/definitions/MemoRequestBody'
-        type: array
-        x-go-name: Update
     type: object
     x-go-package: github.com/gethinyan/enterprise/api/v1
   UserRequestBody:
@@ -216,16 +120,6 @@ info:
   title: API.
   version: 0.0.1
 paths:
-  /memos:
-    get:
-      description: 备忘录/便笺列表
-      operationId: ListMemoRequest
-      responses:
-        "200":
-          $ref: '#/responses/ListMemoResponse'
-      schemes:
-      - http
-      - https
   /sendEmail:
     get:
       description: 发送邮件
@@ -278,21 +172,6 @@ paths:
       schemes:
       - http
       - https
-  /syncMemo:
-    post:
-      description: 同步备忘录/便笺
-      operationId: SyncMemoRequest
-      parameters:
-      - in: body
-        name: Body
-        schema:
-          $ref: '#/definitions/SyncMemoRequestForm'
-      responses:
-        "200":
-          $ref: '#/responses/SyncMemoResponse'
-      schemes:
-      - http
-      - https
   /users/{id}:
     get:
       description: 获取用户信息
@@ -336,42 +215,12 @@ responses:
           type: string
           x-go-name: Message
       type: object
-  ListMemoResponse:
-    description: ListMemoResponse 备忘录/便笺列表响应参数
-    schema:
-      properties:
-        data:
-          description: 备忘录/便笺列表
-          items:
-            $ref: '#/definitions/Memo'
-          type: array
-          x-go-name: Data
-        message:
-          description: 响应信息
-          type: string
-          x-go-name: Message
-      type: object
   SignResponse:
     description: SignResponse 用户注册/登录响应参数
     schema:
       properties:
         data:
           $ref: '#/definitions/UserResponseBody'
-        message:
-          description: 响应信息
-          type: string
-          x-go-name: Message
-      type: object
-  SyncMemoResponse:
-    description: SyncMemoResponse 同步备忘录/便笺响应参数
-    schema:
-      properties:
-        data:
-          description: 备忘录/便笺列表
-          items:
-            $ref: '#/definitions/Memo'
-          type: array
-          x-go-name: Data
         message:
           description: 响应信息
           type: string
