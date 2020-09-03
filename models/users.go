@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/gethinyan/auth/pkg/util"
+	"github.com/gethinyan/auth/internal/util"
 	"gorm.io/gorm"
 )
 
@@ -122,9 +122,20 @@ func (user *User) BeforeSave(dbConn *gorm.DB) (err error) {
 	return
 }
 
-// SaveUser 保存用户信息，包括创建/更新
-func SaveUser(user *User) error {
-	if err := dbConn.Save(user).Error; err != nil {
+// CreateUser 创建用户
+func CreateUser(user *User) error {
+	user.CreatedAt = time.Now()
+	if err := dbConn.Create(user).Error; err != nil {
+		return err
+	}
+	fmt.Println(user)
+	return nil
+}
+
+// UpdateUser 更新用户信息
+func UpdateUser(user *User) error {
+	user.UpdatedAt = time.Now()
+	if err := dbConn.Model(user).Updates(user).Error; err != nil {
 		return err
 	}
 	fmt.Println(user)

@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/gethinyan/auth/internal/util"
 	"github.com/gethinyan/auth/models"
-	"github.com/gethinyan/auth/pkg/util"
 	"github.com/gin-gonic/gin"
 )
 
@@ -93,9 +93,10 @@ func UpdateUser(c *gin.Context) {
 		Birth:     request.Birth,
 		AvatarURL: request.AvatarURL,
 	}
-	if err := models.SaveUser(&user); err != nil {
+	fmt.Println(user)
+	if err := models.UpdateUser(&user); err != nil {
 		fmt.Println(err)
-		c.JSON(http.StatusBadRequest, gin.H{"message": "创建用户失败"})
+		c.JSON(http.StatusBadRequest, gin.H{"message": "更新用户信息失败"})
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{"data": user.ConvertToResponse()})

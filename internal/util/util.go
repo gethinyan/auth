@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/gethinyan/auth/pkg/setting"
+	"github.com/gethinyan/auth/internal/setting"
 	"github.com/gin-gonic/gin"
 	"github.com/oschwald/geoip2-golang"
 	"golang.org/x/crypto/bcrypt"

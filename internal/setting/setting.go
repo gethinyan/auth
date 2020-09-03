@@ -59,7 +59,7 @@ var (
 )
 
 // app.yaml 对应结构体
-var config struct {
+var appConfig struct {
 	App      AppSection
 	Server   ServerSection
 	Database DatabaseSection
@@ -71,18 +71,18 @@ var config struct {
 // init 初始化加载配置文件
 func init() {
 	// 解析 app.yml
-	file, err := ioutil.ReadFile("config/app.yml")
+	file, err := ioutil.ReadFile("configs/app.yml")
 	if err != nil {
 		log.Fatalln(err)
 	}
-	err = yaml.Unmarshal([]byte(file), &config)
+	err = yaml.Unmarshal([]byte(file), &appConfig)
 	if err != nil {
 		log.Fatalln(err)
 	}
-	App = config.App
-	Server = config.Server
-	Database = config.Database
-	Redis = config.Redis
-	Email = config.Email
-	Code = config.Code
+	App = appConfig.App
+	Server = appConfig.Server
+	Database = appConfig.Database
+	Redis = appConfig.Redis
+	Email = appConfig.Email
+	Code = appConfig.Code
 }

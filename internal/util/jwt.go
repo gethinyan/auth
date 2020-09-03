@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
-	"github.com/gethinyan/auth/pkg/setting"
+	"github.com/gethinyan/auth/internal/setting"
 )
 
 // UID token 解析出的用户 ID
@@ -22,7 +22,7 @@ type Claims struct {
 
 // GetTokenExpireTime 获取 token 过期时间
 func GetTokenExpireTime() int64 {
-	return time.Now().Add(30 * time.Second).Unix()
+	return time.Now().Add(30 * time.Minute).Unix()
 }
 
 // GetRefreshTokenExpireTime 获取 refresh token 过期时间

@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/gethinyan/auth/pkg/setting"
+	"github.com/gethinyan/auth/internal/setting"
 	"github.com/gethinyan/auth/routes"
 )
 

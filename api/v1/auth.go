@@ -3,9 +3,9 @@ package v1
 import (
 	"net/http"
 
+	"github.com/gethinyan/auth/internal/redis"
+	"github.com/gethinyan/auth/internal/util"
 	"github.com/gethinyan/auth/models"
-	"github.com/gethinyan/auth/pkg/redis"
-	"github.com/gethinyan/auth/pkg/util"
 	"github.com/gin-gonic/gin"
 )
 
@@ -86,7 +86,7 @@ func SignUp(c *gin.Context) {
 	user.RegIP = util.GetClientIP(c)
 	user.RegAddr = util.GetClientAddr(user.RegIP)
 
-	if err := models.SaveUser(&user); err != nil {
+	if err := models.CreateUser(&user); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"message": "创建用户失败"})
 		return
 	}
