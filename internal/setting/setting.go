@@ -3,6 +3,8 @@ package setting
 import (
 	"io/ioutil"
 	"log"
+	"path"
+	"runtime"
 	"time"
 
 	"gopkg.in/yaml.v2"
@@ -71,7 +73,12 @@ var appConfig struct {
 // init 初始化加载配置文件
 func init() {
 	// 解析 app.yml
-	file, err := ioutil.ReadFile("configs/app.yml")
+	_, filename, _, ok := runtime.Caller(0)
+	if !ok {
+		log.Fatalln("获取文件路径")
+	}
+	filepath := path.Join(path.Dir(filename), "../../configs/app.yml")
+	file, err := ioutil.ReadFile(filepath)
 	if err != nil {
 		log.Fatalln(err)
 	}

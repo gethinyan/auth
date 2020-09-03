@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package auth;
+
+message UserInfo {
+  int64 ID = 1;
+  string Phone = 2;
+  string Email = 3;
+  string Username = 4;
+  string Address = 5;
+  int64 Gender = 6;
+  string Birth = 7;
+  string AvatarURL = 8;
+}
+
+message Identity {
+  int64 ID = 1;
+}
+
+service User { rpc GetUserInfo(Identity) returns (UserInfo); }
