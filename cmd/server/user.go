@@ -33,6 +33,14 @@ func (u *user) GetUserInfo(ctx context.Context, in *pb.Identity) (*pb.UserInfo, 
 	}, nil
 }
 
+func (u *user) DeleteUser(ctx context.Context, in *pb.Identity) (*pb.Void, error) {
+
+	if err := models.DeleteUserByID(uint(in.ID)); err != nil {
+		return &pb.Void{}, err
+	}
+	return &pb.Void{}, nil
+}
+
 func main() {
 	log.Printf("begin to start rpc server")
 	lis, err := net.Listen("tcp", port)

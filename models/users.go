@@ -142,6 +142,16 @@ func UpdateUser(user *User) error {
 	return nil
 }
 
+// DeleteUserByID 通过 ID 删除用户（逻辑删除）
+func DeleteUserByID(id uint) error {
+	user := &User{ID: id}
+	if err := dbConn.Delete(user).Error; err != nil {
+		return err
+	}
+	fmt.Println(user)
+	return nil
+}
+
 // ConvertToResponse 转换为响应参数
 func (user *User) ConvertToResponse() UserResponseBody {
 	response := UserResponseBody{

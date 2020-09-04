@@ -32,5 +32,11 @@ func main() {
 	log.Printf("get user info success, %s", response)
 	fmt.Println(response)
 
+	_, err = client.DeleteUser(ctx, &pb.Identity{ID: 1})
+	if nil != err {
+		log.Fatalf("delete user failed, %v", err)
+	}
+	log.Printf("delete user success, %s", response)
+
 	defer cancel()
 }
