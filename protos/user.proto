@@ -13,8 +13,11 @@ message UserInfo {
   string AvatarURL = 8;
 }
 
-message Identity {
-  int64 ID = 1;
-}
+message Identity { int64 ID = 1; }
 
-service User { rpc GetUserInfo(Identity) returns (UserInfo); }
+message Void {}
+
+service User {
+  rpc GetUserInfo(Identity) returns (UserInfo);
+  rpc DeleteUser(Identity) returns (Void);
+}
