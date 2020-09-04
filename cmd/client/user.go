@@ -36,7 +36,7 @@ func main() {
 	if nil != err {
 		log.Fatalf("delete user failed, %v", err)
 	}
-	log.Printf("delete user success, %s", response)
+	log.Printf("delete user success")
 
 	defer cancel()
 }
